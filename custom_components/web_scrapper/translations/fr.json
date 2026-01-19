@@ -1,0 +1,28 @@
+{
+  "title": "Web Scraper",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Nouveau Web Scraper",
+        "description": "Configurer un scraper web",
+        "data": {
+          "name": "Nom",
+          "url": "URL",
+          "selector": "Sélecteur CSS / XPath",
+          "selector_type": "Type de sélecteur",
+          "regex": "Regex (optionnelle)"
+        }
+      }
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Options",
+        "data": {
+          "scan_interval": "Fréquence de mise à jour (secondes)"
+        }
+      }
+    }
+  }
+}
