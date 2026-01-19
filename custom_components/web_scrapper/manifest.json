@@ -4,7 +4,6 @@
   "version": "1.1.0",
   "documentation": "https://github.com/bpoiriervernay-afk/hass-poirier",
   "issue_tracker": "https://github.com/bpoiriervernay-afk/hass-poirier/issues",
-  "requirements": ["beautifulsoup4", "lxml"],
   "config_flow": true,
   "iot_class": "cloud_polling"
   "requirements": ["beautifulsoup4", "lxml"]
