@@ -1,7 +1,6 @@
 {
-  "name": "Web Scraper",
+  "name": "Custom Home Assistant Integrations",
   "content_in_root": false,
-  "domain": "web_scraper",
-  "country": ["FR"],
+  "render_readme": true,
   "homeassistant": "2023.6.0"
 }
