@@ -1,0 +1,9 @@
+{
+  "domain": "web_scraper",
+  "name": "Web Scraper",
+  "version": "1.0.0",
+  "documentation": "https://example.local",
+  "requirements": ["requests", "beautifulsoup4", "lxml"],
+  "config_flow": true,
+  "iot_class": "cloud_polling"
+}
