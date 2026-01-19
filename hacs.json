@@ -1,0 +1,7 @@
+{
+  "name": "Web Scraper",
+  "content_in_root": false,
+  "domain": "web_scraper",
+  "country": ["FR"],
+  "homeassistant": "2023.6.0"
+}
