@@ -8,19 +8,9 @@
         "data": {
           "name": "Nom",
           "url": "URL",
-          "selector": "Sélecteur CSS / XPath",
-          "selector_type": "Type de sélecteur",
+          "selector": "SÇ¸lecteur CSS / XPath",
+          "selector_type": "Type de sÇ¸lecteur",
           "regex": "Regex (optionnelle)"
-        }
-      }
-    }
-  },
-  "options": {
-    "step": {
-      "init": {
-        "title": "Options",
-        "data": {
-          "scan_interval": "Fréquence de mise à jour (secondes)"
         }
       }
     }

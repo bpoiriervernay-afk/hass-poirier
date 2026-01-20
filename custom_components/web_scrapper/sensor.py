@@ -27,9 +27,7 @@ class WebScraperCoordinator(DataUpdateCoordinator):
             hass,
             logger=self.logger,
             name="WebScraper",
-            update_interval=timedelta(
-                seconds=entry.options.get(CONF_SCAN_INTERVAL, DEFAULT_SCAN_INTERVAL)
-            ),
+            update_interval=timedelta(seconds=DEFAULT_SCAN_INTERVAL),
         )
 
     async def _async_update_data(self):
