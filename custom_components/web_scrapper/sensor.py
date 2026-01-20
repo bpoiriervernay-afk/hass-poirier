@@ -1,19 +1,15 @@
-import re
 import time
 import logging
 from datetime import timedelta
-
-from bs4 import BeautifulSoup
-from lxml import html
 
 from homeassistant.components.sensor import SensorEntity
 from homeassistant.helpers.update_coordinator import (
     DataUpdateCoordinator,
     UpdateFailed,
 )
-from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
 from .const import *
+from .scraper import async_fetch_and_extract, WebScraperRequestError
 
 
 class WebScraperCoordinator(DataUpdateCoordinator):
@@ -30,36 +26,29 @@ class WebScraperCoordinator(DataUpdateCoordinator):
             update_interval=timedelta(seconds=DEFAULT_SCAN_INTERVAL),
         )
 
+    def _get_config(self, key, default=None):
+        if key in self.entry.options:
+            return self.entry.options.get(key)
+        return self.entry.data.get(key, default)
+
     async def _async_update_data(self):
         try:
-            session = async_get_clientsession(self.hass)
-    
-            async with session.get(self.entry.data[CONF_URL], timeout=15) as resp:
-                if resp.status != 200:
-                    raise UpdateFailed(f"HTTP {resp.status}")
-                content = await resp.text()
-    
-            if self.entry.data[CONF_SELECTOR_TYPE] == "css":
-                soup = BeautifulSoup(content, "html.parser")
-                elements = soup.select(self.entry.data[CONF_SELECTOR])
-                text = "\n".join(e.get_text(" ", strip=True) for e in elements)
-            else:
-                doc = html.fromstring(content)
-                nodes = doc.xpath(self.entry.data[CONF_SELECTOR])
-                text = "\n".join(
-                    n if isinstance(n, str) else " ".join(n.itertext())
-                    for n in nodes
-                )
-    
-            regex = self.entry.data.get(CONF_REGEX)
-            if regex:
-                text = re.findall(regex, text)
-    
+            text = await async_fetch_and_extract(
+                self.hass,
+                url=self._get_config(CONF_URL),
+                selector=self._get_config(CONF_SELECTOR),
+                selector_type=self._get_config(CONF_SELECTOR_TYPE),
+                regex=self._get_config(CONF_REGEX),
+                request_method=self._get_config(
+                    CONF_REQUEST_METHOD, DEFAULT_REQUEST_METHOD
+                ),
+            )
+
             self.last_status = "OK"
             self.last_update = time.strftime("%Y-%m-%d %H:%M:%S")
             return text
     
-        except Exception as err:
+        except WebScraperRequestError as err:
             self.last_status = "Erreur"
             raise UpdateFailed(str(err))
 
@@ -86,7 +75,10 @@ class WebScraperSensor(SensorEntity):
             "status": self.coordinator.last_status,
             "last_update": self.coordinator.last_update,
             "scan_interval_sec": self.coordinator.update_interval.total_seconds(),
-            "url": self.entry.data[CONF_URL],
-            "selector": self.entry.data[CONF_SELECTOR],
-            "selector_type": self.entry.data[CONF_SELECTOR_TYPE],
+            "url": self.coordinator._get_config(CONF_URL),
+            "selector": self.coordinator._get_config(CONF_SELECTOR),
+            "selector_type": self.coordinator._get_config(CONF_SELECTOR_TYPE),
+            "request_method": self.coordinator._get_config(
+                CONF_REQUEST_METHOD, DEFAULT_REQUEST_METHOD
+            ),
         }

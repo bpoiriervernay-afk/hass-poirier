@@ -4,15 +4,37 @@
     "step": {
       "user": {
         "title": "Nouveau Web Scraper",
-        "description": "Configurer un scraper web",
+        "description": "Configurer un scraper web. Dernier test: {test_result}",
         "data": {
           "name": "Nom",
           "url": "URL",
-          "selector": "SÇ¸lecteur CSS / XPath",
-          "selector_type": "Type de sÇ¸lecteur",
-          "regex": "Regex (optionnelle)"
+          "selector": "Selecteur CSS / XPath",
+          "selector_type": "Type de selecteur",
+          "regex": "Regex (optionnelle)",
+          "request_method": "Type de requete",
+          "test_request": "Tester la requete"
         }
       }
     }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Options",
+        "description": "Modifier les options. Dernier test: {test_result}",
+        "data": {
+          "url": "URL",
+          "selector": "Selecteur CSS / XPath",
+          "selector_type": "Type de selecteur",
+          "regex": "Regex (optionnelle)",
+          "request_method": "Type de requete",
+          "test_request": "Tester la requete"
+        }
+      }
+    }
+  },
+  "error": {
+    "request_failed": "Requete echouee",
+    "empty_response": "Retour Vide"
   }
 }
