@@ -1,0 +1,27 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connexion à JOAL",
+        "description": "Reprenez les valeurs passées à JOAL : --server.port, --joal.ui.path.prefix et --joal.ui.secret-token.",
+        "data": {
+          "url": "Adresse web de JOAL",
+          "port": "Port",
+          "path_prefix": "Préfixe",
+          "secret_token": "Secret token"
+        },
+        "data_description": {
+          "url": "Par exemple http://192.168.1.10 ou https://joal.exemple.fr (https = connexion chiffrée)."
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "Adresse invalide. Utilisez http://… ou https://…",
+      "cannot_connect": "Impossible de joindre JOAL. Vérifiez l'adresse, le port et le préfixe.",
+      "invalid_auth": "JOAL a refusé le secret token."
+    },
+    "abort": {
+      "already_configured": "Cette instance de JOAL est déjà configurée."
+    }
+  }
+}
