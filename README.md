@@ -17,7 +17,7 @@ L'interface web de JOAL doit être activée :
 
 ### Via HACS
 1. HACS → menu ⋮ → **Dépôts personnalisés**
-2. Ajoutez `https://github.com/VOTRE_PSEUDO/ha-joal`, catégorie **Intégration**
+2. Ajoutez `https://github.com/bpoiriervernay-afk/hass-poirier`, catégorie **Intégration**
 3. Installez **JOAL**, puis redémarrez Home Assistant
 
 ### Manuelle
