@@ -1,0 +1,12 @@
+{
+  "domain": "joal",
+  "name": "JOAL",
+  "codeowners": ["bpoiriervernay-afk"],
+  "config_flow": true,
+  "documentation": "https://github.com/VOTRE_PSEUDO/ha-joal",
+  "integration_type": "device",
+  "iot_class": "local_push",
+  "issue_tracker": "https://github.com/VOTRE_PSEUDO/ha-joal/issues",
+  "requirements": [],
+  "version": "0.1.0"
+}
